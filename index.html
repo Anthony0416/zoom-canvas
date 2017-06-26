@@ -68,6 +68,13 @@
 			background: #CCCC00;
 		}
 		
+		#parent{
+			background-color: #000;
+			height: 550px;
+			width: 1000px;
+			margin: 0 0 0 -130px;
+		}
+
 		#canvas {
 			background: #eee;
 			cursor: default;
@@ -107,6 +114,8 @@
 				<input id="draw" type="button" value="画笔" style="width:80px;" />
 			</div>
 			<div id="parent">
+				<!-- 这里添加一个img标签用于存放图片，后续取图片宽高需要用到 -->
+				<img src="images/zoomFullScreen.jpg" style="display: none" id="img">
 				<canvas id="canvas" width="740" height="420" style="background: url(images/zoomFullScreen.jpg);">您的浏览器不支持 canvas 标签</canvas>
 			</div>
 			<div id="div1"></div>
@@ -309,9 +318,11 @@
 				paint.init();
 			})();
 			// 缩放处理
-			$(document).ready(function() { 
+			$(document).ready(function() {
+				// 初始化缩放之前重置canvas大小
+				$('#canvas').attr('width',$('#img').width());
+				$('#canvas').attr('height',$('#img').height());
 				obj = $('#canvas').smartZoom({'containerClass':'zoomableContainer'}); 
-				console.log(obj);
 			});
 		</script>
 		<div style="clear:both"></div>

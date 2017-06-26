@@ -77,3 +77,10 @@ $('#canvas').smartZoom('zoom', -500);
 			}
 ```
 
+#### 2017/06/26 更新 canvas自适应
+
+之前的项目中，canvas中的图片都是定长定宽，所以直接把canvas的大小写死了。但是最近给出的一批图片数据来自用户采集，各种奇怪的分辨率，所以就需要做到动态调整canvas大小去适应图片，本来想着大的分辨率需不需要压缩大小以完全显示，但实际测试发现不管canvas多大，smartZoom都能将其缩放到外框的大小，这点非常不错。
+
+所以我对这个demo的修改就变得十分简单了：
+
+首先在116行的div #parent 内添加一个img标签，存放用于canvas中显示的图片，在smartZoom初始化之前，通过`$('#img').height()` 和 ​`$('#img').width()` 获取图片宽高赋值给canvas的height和width（这里的height和width不是css的height和width，使用`$('#canvas').attr()` 来赋值）。
